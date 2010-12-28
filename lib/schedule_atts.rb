@@ -1,0 +1,3 @@
+module ScheduleAtts
+  # Your code goes here...
+end
