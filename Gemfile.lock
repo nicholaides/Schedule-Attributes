@@ -2,15 +2,18 @@ PATH
   remote: .
   specs:
     schedule_atts (0.0.1)
+      activesupport
       ice_cube (>= 0.6.4)
 
 GEM
   remote: http://rubygems.org/
   specs:
     ZenTest (4.4.2)
+    activesupport (3.0.3)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     diff-lcs (1.1.2)
+    facets (2.9.0)
     ice_cube (0.6.4)
     rspec (2.3.0)
       rspec-core (~> 2.3.0)
@@ -25,7 +28,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   autotest
+  facets
   ice_cube (>= 0.6.4)
   rspec (>= 2.3)
   schedule_atts!
