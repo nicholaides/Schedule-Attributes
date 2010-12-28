@@ -1,0 +1,31 @@
+PATH
+  remote: .
+  specs:
+    schedule_atts (0.0.1)
+      ice_cube (>= 0.6.4)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ZenTest (4.4.2)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
+    diff-lcs (1.1.2)
+    ice_cube (0.6.4)
+    rspec (2.3.0)
+      rspec-core (~> 2.3.0)
+      rspec-expectations (~> 2.3.0)
+      rspec-mocks (~> 2.3.0)
+    rspec-core (2.3.1)
+    rspec-expectations (2.3.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  autotest
+  ice_cube (>= 0.6.4)
+  rspec (>= 2.3)
+  schedule_atts!
