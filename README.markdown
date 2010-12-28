@@ -1,6 +1,6 @@
 # Schedule Attributes
 
-Schedule Attributes allows models (ORM agnostic) to accept recurring schedule form parameters and translate them into an [IceCube](https://github.com/seejohnrun/ice_cube/) `Schedule` object. Schedule Attributes adds `schedule_attributes` and `schedule_attributes=` methods that let your model automatically populate Rails forms and receive HTML form parameters. Additionally, it provides access to the `IceCube::Schedule` object itself.
+Schedule Attributes allows models (ORM agnostic) to accept recurring schedule form parameters and translate them into an [IceCube](https://github.com/seejohnrun/ice_cube/) `Schedule` object. Schedule Attributes adds `#schedule_attributes` and `#schedule_attributes=` methods that let your model automatically populate Rails forms and receive HTML form parameters. Additionally, it provides access to the `IceCube::Schedule` object itself.
 
 ## Usage
 
@@ -64,8 +64,7 @@ Indicates with a `0` or `1` whether the event repeats on this day. For example, 
 
 ## `schedule_attributes`
 
-Provides an OStruct with methods that correspond to the attributes accepted by `#schedule_attributes=`
-
+Provides an OStruct with methods that correspond to the attributes accepted by `#schedule_attributes=`. ActiveRecord can use this object to populate a form using [`FormHelper#fields_for`](http://apidock.com/rails/ActionView/Helpers/FormHelper/fields_for).
 
 ##`schedule`
 
