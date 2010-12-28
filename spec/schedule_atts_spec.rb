@@ -25,35 +25,35 @@ describe ScheduledModel do
         subject{ scheduled_model.schedule }
         context "given :interval_unit=>none" do
           let(:schedule_attributes){ { :repeat => '0', :date => '1-1-1985', :interval => '5 (ignore this)' } }
-          its(:start_date){ should == Date.new(1985, 1, 1) }
-          its(:all_occurrences){ should == [Date.new(1985, 1, 1)] }
+          its(:start_date){ should == Date.new(1985, 1, 1).to_time }
+          its(:all_occurrences){ should == [Date.new(1985, 1, 1).to_time] }
           its(:rrules){ should be_blank }
         end
 
         context "given :interval_unit=>day" do
           let(:schedule_attributes){ { :repeat => '1', :start_date => '1-1-1985', :interval_unit => 'day', :interval => '3' } }
-          its(:start_date){ should == Date.new(1985, 1, 1) }
+          its(:start_date){ should == Date.new(1985, 1, 1).to_time }
           its(:rrules){ should == [IceCube::Rule.daily(3)] }
-          it{ subject.first(3).should == [Date.civil(1985, 1, 1), Date.civil(1985, 1, 4), Date.civil(1985, 1, 7)] }
+          it{ subject.first(3).should == [Date.civil(1985, 1, 1), Date.civil(1985, 1, 4), Date.civil(1985, 1, 7)].map(&:to_time) }
         end
 
         context "given :interval_unit=>day & :ends=>eventually & :until_date" do
           let(:schedule_attributes){ { :repeat => '1', :start_date => '1-1-1985', :interval_unit => 'day', :interval => '3', :until_date => '29-12-1985', :ends => 'eventually' } }
-          its(:start_date){ should == Date.new(1985, 1, 1) }
-          its(:rrules){ should == [IceCube::Rule.daily(3).until(Date.new(1985, 12, 29))] }
-          it{ subject.first(3).should == [Date.civil(1985, 1, 1), Date.civil(1985, 1, 4), Date.civil(1985, 1, 7)] }
+          its(:start_date){ should == Date.new(1985, 1, 1).to_time }
+          its(:rrules){ should == [ IceCube::Rule.daily(3).until(Date.new(1985, 12, 29).to_time) ] }
+          it{ subject.first(3).should == [Date.civil(1985, 1, 1), Date.civil(1985, 1, 4), Date.civil(1985, 1, 7)].map(&:to_time) }
         end
 
         context "given :interval_unit=>day & :ends=>never & :until_date" do
           let(:schedule_attributes){ { :repeat => '1', :start_date => '1-1-1985', :interval_unit => 'day', :interval => '3', :until_date => '29-12-1985', :ends => 'never' } }
-          its(:start_date){ should == Date.new(1985, 1, 1) }
+          its(:start_date){ should == Date.new(1985, 1, 1).to_time }
           its(:rrules){ should == [IceCube::Rule.daily(3)] }
-          it{ subject.first(3).should == [Date.civil(1985, 1, 1), Date.civil(1985, 1, 4), Date.civil(1985, 1, 7)] }
+          it{ subject.first(3).should == [Date.civil(1985, 1, 1), Date.civil(1985, 1, 4), Date.civil(1985, 1, 7)].map(&:to_time) }
         end
 
         context "given :interval_unit=>week & :mon,:wed,:fri" do
           let(:schedule_attributes){ { :repeat => '1', :start_date => '1-1-1985', :interval_unit => 'week', :interval => '3', :monday => '1', :wednesday => '1', :friday => '1' } }
-          its(:start_date){ should == Date.new(1985, 1, 1) }
+          its(:start_date){ should == Date.new(1985, 1, 1).to_time }
           its(:rrules){ should == [IceCube::Rule.weekly(3).day(:monday, :wednesday, :friday)] }
           it { subject.occurs_at?(ScheduleAttributes.parse_in_timezone('1985-1-2')).should be_true }
           it { subject.occurs_at?(ScheduleAttributes.parse_in_timezone('1985-1-4')).should be_true }

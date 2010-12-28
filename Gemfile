@@ -4,3 +4,4 @@ source "http://rubygems.org"
 gemspec
 
 gem 'autotest'
+gem 'ruby-debug19'
